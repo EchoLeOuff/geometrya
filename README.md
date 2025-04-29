@@ -138,6 +138,7 @@ Mise en place de réunions rapides pour synchroniser les avancées
 
 
 📌 Conclusion et Perspectives
+
 ✅ Avancement actuel :
 
 
