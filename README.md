@@ -1,4 +1,4 @@
-Projet TIPE GeometrIA
+Projet TIPE GeometryA
 
 📖 Présentation
 À travers l'exemple d'un jeu vidéo (Geometry Dash), nous allons montrer comment on peut optimiser un modèle afin de réussir un niveau.
@@ -24,8 +24,10 @@ Enfin, nous générerons d’autres simulations en ajoutant des conditions initi
 🔎 Bilan du Sprint 1
 
 🛠️ Conception d’un Niveau Simplifié
+
 Nous avons commencé par développer une version simplifiée du jeu en Python.
 Le but est de créer un environnement contrôlé pour entraîner l’IA.
+
 ➡️ À ce stade, seules les mécaniques de base (saut, déplacement, gestion des collisions) ont été implémentées.
 Un niveau jouable complet n’est pas encore disponible.
 
