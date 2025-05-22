@@ -90,6 +90,63 @@ Nous avons pris le temps de clarifier certains concepts clés avant d’impléme
 
 - **Lancer les premiers tests d’entraînement IA.**
 
+## 🔎 Bilan du Sprint 2
+
+### 🛠 Conception du premier modèle en Q-Learning
+Nous avons poursuivie le développement de notre version simplifiée du jeu en Python.
+Puis création du premier modèle d'apprentissage.
+
+➡️ **À ce stade, le niveau reste incomplet et le premier modèle possède encore des axes d'amélioration**, le q-learning est fonctionnel.
+
+### 🧠 Exploration des Approches Machine Learning
+Nous avons continuer à étudier les différentes solution de machine learning en python adapté à nos besoins.
+
+Q-learning : algorithme d'apprentissage par renforcement avec un système de récompense. 
+
+### 👥 Répartition des Rôles et Tâches
+
+|   Période   | Tâche                                                    |Responsable |
+| ----------- | ---------------------------------------------------------|------------|
+| Semaine 3-4 | approfondissement des recherches sur le machine learning | Vincent    |
+| Semaine 3-4 | ajout de l'algorithme d'apprentissage par renforcement   | Dorian     |
+
+### 📚 Ressources Consultées
+- vidéo youtube de CODE BH - J'ai fait une IA qui apprend à jouer à Geometry Dash.
+- vidéo youtube de Thibault Neveu - Apprentissage par renforcement #7 : Deep Q-Learning, apprendre à conduire
+- vidéo youtube de Siraj Raval - Q Learning Explained (tutorial)
+- Tutoriels “Reinforcement Learning” du site officiel PyTorch.
+- Exemples d’agents IA jouant à des jeux 2D.
+
+
+### ✅ Solutions Envisagées / Réalisées 
+
+| Solution             | Statut            | Description courte                                                 |
+| -------------------- | ----------------- | -----------------------------------------------------------------  |
+| Agent Q-learning     | Opérationnels     | Agent fonctionnelle. Entrainement impossible sans la fin du niveau |
+| Simulation Python    | Mécaniques codées | Méchaniques opérationnelles.                                       |
+| Niveau               | en cours          | Niveau icomplet qui permet pas encore un apprentissage interessant |
+
+### ⚠️ Difficultés et Obstacles
+
+| Difficulté                               | Solution adoptée                                                           |
+| ---------------------------------------- | -------------------------------------------------------------------------- |
+| Organisation du code                     | on s'est mit d'accord sur les bibliothèque a utiliser et nettoyage du code |
+
+### 📌 Conclusion et Perspectives
+
+✅ **Avancement actuel :**
+- Mécaniques de jeu codées et fonctionnelles.
+
+- Réorganisation du code afin d'avoir une meilleur visibilité.
+
+- Ajout de l'agent de Q-learning. 
+
+
+
+🔜 **À venir :**
+- **Créer un niveau complet** pour commencer l'entrainement.
+- **Lancer les premiers tests d’entraînement IA.**
+
 ## 📁 Add your files
 
 - [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
