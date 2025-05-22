@@ -98,10 +98,11 @@ Puis création du premier modèle d'apprentissage.
 
 ➡️ **À ce stade, le niveau reste incomplet et le premier modèle possède encore des axes d'amélioration**, le q-learning est fonctionnel.
 
+**Q-learning** : algorithme d'apprentissage par renforcement avec un système de récompense. 
+
 ### 🧠 Exploration des Approches Machine Learning
 Nous avons continuer à étudier les différentes solution de machine learning en python adapté à nos besoins.
 
-Q-learning : algorithme d'apprentissage par renforcement avec un système de récompense. 
 
 ### 👥 Répartition des Rôles et Tâches
 
@@ -114,7 +115,6 @@ Q-learning : algorithme d'apprentissage par renforcement avec un système de ré
 - vidéo youtube de CODE BH - J'ai fait une IA qui apprend à jouer à Geometry Dash.
 - vidéo youtube de Thibault Neveu - Apprentissage par renforcement #7 : Deep Q-Learning, apprendre à conduire
 - vidéo youtube de Siraj Raval - Q Learning Explained (tutorial)
-- Tutoriels “Reinforcement Learning” du site officiel PyTorch.
 - Exemples d’agents IA jouant à des jeux 2D.
 
 
