@@ -1,6 +1,8 @@
 # game/entities.py
 import pygame
 from config import *
+from config import FONT
+
 
 class Player:
     def __init__(self):

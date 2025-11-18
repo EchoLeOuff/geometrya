@@ -1,7 +1,7 @@
 # main.py
 import pygame
 import sys
-from config import WIDTH, HEIGHT, FPS
+from config import *
 from game.engine import GameEngine
 from game.renderer import render
 from capture.screen_capture import FrameProcessor

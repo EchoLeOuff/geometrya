@@ -19,4 +19,5 @@ PLATFORM_COLOR = (100, 180, 255)
 TEXT_COLOR = (230, 230, 230)
 
 # --- Police ---
+pygame.font.init()
 FONT = pygame.font.Font(None, 24)
