@@ -3,6 +3,7 @@ import numpy as np
 import pygame
 from config import *
 from game.engine import GameEngine
+from game.renderer import *
 from capture.screen_capture import FrameProcessor
 from IA.DQN import (
     init_network, forward, choose_action,
@@ -31,6 +32,8 @@ def step_env(screen, engine, processor, clock, action):
 
     clock.tick(FPS)
     engine.update(jump_pressed, WIDTH)
+    render(screen, engine)
+    pygame.display.flip()
 
     # Récompense très simple (à ajuster)
     reward = 1.0
