@@ -7,8 +7,7 @@ import random
 
 def init_network(input_dim, hidden1, hidden2, output_dim):
     params = {}
-    
-    # Initialisation Xavier / He pour ReLU
+
     params["W1"] = np.random.randn(hidden1, input_dim) * np.sqrt(2. / input_dim)
     params["b1"] = np.zeros(hidden1)
 
@@ -43,11 +42,13 @@ def forward(params, X):
         Q_values : shape (2,) OU (batch_size, 2)
         cache : objets nécessaires pour le backward
     """
-
+    if X.ndim == 1:
+        X = X.reshape(1, -1)
+    
     is_batch = (X.ndim == 2)
 
     # 1) Couche 1
-    z1 = X @ params["W1"].T + params["b1"]         # (B,128) ou (128,)
+    z1 = X @ params["W1"].T + params["b1"]
     h1 = relu(z1)
 
     # 2) Couche 2
@@ -60,7 +61,6 @@ def forward(params, X):
     cache = (X, z1, h1, z2, h2)
 
     return q, cache
-
 
 # ============================================================
 # 4) Choix d’action (epsilon-greedy)
