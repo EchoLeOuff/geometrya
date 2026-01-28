@@ -1,0 +1,70 @@
+classDiagram
+    class GameEngine {
+        -player: Player
+        -obstacles: List~Obstacle~
+        -platforms: List~Platform~
+        -level_index: int
+        -world_x: int
+        -score: int
+        -game_over: bool
+        -id: bool
+        +reset()
+        +spawn_objects(screen_width)
+        +update(jump_pressed, screen_width)
+        +is_done(): bool
+        +get_reward(): float
+    }
+
+    class Player {
+        -rect: pygame.Rect
+        -vel_y: float
+        -on_ground: bool
+        -alive: bool
+        +jump()
+        +apply_gravity()
+        +handle_collisions(platforms, obstacles)
+        +update(platforms, obstacles)
+        +draw(surf)
+    }
+
+    class Platform {
+        -rect: pygame.Rect
+        -speed: float
+        -id: int?
+        +update()
+        +draw(surf)
+        +off_screen(): bool
+    }
+
+    class Obstacle {
+        -rect: pygame.Rect
+        -speed: float
+        -id: int
+        +update()
+        +draw(surf)
+        +off_screen(): bool
+    }
+
+    class MatriceDisplay {
+        -mode: str
+        -minimap_size: int
+        -overlay_alpha: int
+        -enabled: bool
+        -show_grid: bool
+        -show_labels: bool
+        -colors: List
+        -channel_names: List
+        +toggle()
+        +toggle_grid()
+        +set_mode(mode)
+        +adjust_size(delta)
+        +draw(screen, processor)
+    }
+
+    class FrameProcessor {
+    }
+
+    GameEngine "1" --> "1" Player : player
+    GameEngine "1" --> "0..*" Platform : platforms
+    GameEngine "1" --> "0..*" Obstacle : obstacles
+    MatriceDisplay ..> FrameProcessor : utilise
