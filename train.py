@@ -3,12 +3,14 @@ import numpy as np
 import pygame
 from config import *
 from game.engine import GameEngine
+from game.renderer import *
 from capture.screen_capture import FrameProcessor
 from IA.DQN import (
     init_network, forward, choose_action,
     store_transition, sample_batch,
     compute_targets, backward, update_params
 )
+import matplotlib.pyplot as plt
 
 def make_env():
     pygame.init()
@@ -31,6 +33,8 @@ def step_env(screen, engine, processor, clock, action):
 
     clock.tick(FPS)
     engine.update(jump_pressed, WIDTH)
+    render(screen, engine)
+    pygame.display.flip()
 
     # Récompense très simple (à ajuster)
     reward = 1.0
@@ -98,6 +102,14 @@ def train_dqn(
     # === SAUVEGARDE DES PARAMS ===
     np.save(save_path, params, allow_pickle=True)
     print(f"Paramètres sauvegardés dans {save_path}")
+
+    plt.plot(episodic_rewards)
+    plt.xlabel("Episode")
+    plt.ylabel("Total reward")
+    plt.title("Courbe d'apprentissage - DQN")
+    plt.grid()
+    plt.savefig("rewards_curve.png")
+    plt.show()
 
     pygame.quit()
 

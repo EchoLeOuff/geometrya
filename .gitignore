@@ -1,0 +1,25 @@
+# Environnements virtuels
+.venv/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# Poetry (garde poetry.lock !)
+# .venv/ déjà couvert
+
+# IDEs
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs/tests
+*.log
+.pytest_cache/
+.coverage
+htmlcov/

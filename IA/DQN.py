@@ -175,5 +175,14 @@ def backward(params, cache, actions, targets):
 # ============================================================
 
 def update_params(params, grads, lr):
+    # --- AJOUT : Gradient Clipping ---
+    max_norm = 1.0 
+    for key in grads:
+        # Si le gradient est trop grand, on le réduit proportionnellement
+        norm = np.linalg.norm(grads[key])
+        if norm > max_norm:
+            grads[key] = grads[key] * (max_norm / norm)
+    # ---------------------------------
+    
     for key in params.keys():
         params[key] -= lr * grads[key]

@@ -147,18 +147,32 @@ Nous avons continuer à étudier les différentes solution de machine learning e
 - **Créer un niveau complet** pour commencer l'entrainement.
 - **Lancer les premiers tests d’entraînement IA.**
 
-## 📁 Add your files
+## 🚀 Installation rapide
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+### Prérequis
+- Python 3.11+ (vérifiez avec `python3 --version`)
+- Poetry (installez avec `curl -sSL https://install.python-poetry.org | python3 -`)
 
+### Étapes
+1. Clonez le repo :
+```bash
+git clone https://github.com/tonuser/geometrya.git
+cd geometrya
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/tipe3/geometry.git
-git branch -M main
-git push -uf origin main
+
+2. Installez les dépendances (crée l'environnement virtuel automatiquement) :
+
+```bash
+poetry install --no-root
+```
+4. Activez l'environnement :
+
+```bash
+eval "$(poetry env activate --shell bash)"  # ou fish: eval (poetry env activate --shell fish)
 ```
 
-## 🔧 Integrate with your tools
+5. Lancez vos scripts :
 
-- [ ] [Set up project integrations](https://gitlab.com/tipe3/geometry/-/settings/integrations)
+```bash
+poetry run python main.py  # remplacez par votre fichier
+```

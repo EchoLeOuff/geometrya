@@ -1,0 +1,29 @@
+classDiagram
+    class NeuralNetwork {
+        +forward(state) Q_values
+        +backward(cache, targets, actions) gradients
+        +update(gradients, lr)
+    }
+
+    class ReplayBuffer {
+        +store(s, a, r, s2, done)
+        +sample(batch_size)
+    }
+
+    class Agent {
+        +choose_action(Q_values, epsilon) action
+        +learn(batch)
+        -epsilon: float
+        -gamma: float
+    }
+
+    class QLearning {
+        +compute_targets(rewards, next_Q, dones, gamma)
+    }
+
+    %% Relations
+    Agent --> NeuralNetwork : utilise
+    Agent --> ReplayBuffer : remplit
+    Agent --> QLearning : calcule cibles
+    QLearning --> NeuralNetwork : Q(s')
+    Agent <-- ReplayBuffer : échantillons
