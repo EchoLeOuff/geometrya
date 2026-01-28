@@ -10,6 +10,7 @@ from IA.DQN import (
     store_transition, sample_batch,
     compute_targets, backward, update_params
 )
+import matplotlib.pyplot as plt
 
 def make_env():
     pygame.init()
@@ -101,6 +102,14 @@ def train_dqn(
     # === SAUVEGARDE DES PARAMS ===
     np.save(save_path, params, allow_pickle=True)
     print(f"Paramètres sauvegardés dans {save_path}")
+
+    plt.plot(episodic_rewards)
+    plt.xlabel("Episode")
+    plt.ylabel("Total reward")
+    plt.title("Courbe d'apprentissage - DQN")
+    plt.grid()
+    plt.savefig("rewards_curve.png")
+    plt.show()
 
     pygame.quit()
 

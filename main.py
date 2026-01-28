@@ -51,6 +51,8 @@ while running:
     # === RENDU ===
     render(screen, engine)
     pygame.display.flip()
+    if engine.is_done():
+        render(screen, engine)
 
 pygame.quit()
 sys.exit()
