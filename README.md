@@ -174,5 +174,6 @@ eval "$(poetry env activate --shell bash)"  # ou fish: eval (poetry env activate
 5. Lancez vos scripts :
 
 ```bash
-poetry run python main.py  # remplacez par votre fichier
+poetry install --no-root  # Une fois au clean (dépendances)
+poetry run python train.py # À chaque exécution (training DQN)
 ```
