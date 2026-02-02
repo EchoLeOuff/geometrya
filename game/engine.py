@@ -11,7 +11,7 @@ class GameEngine:
         self.world_x = 0
         self.score = 0
         self.game_over = False
-        self.id = False 
+        self.id = True 
 
     def reset(self):
         self.__init__()

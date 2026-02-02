@@ -3,7 +3,7 @@ import pygame
 
 # --- Dimensions & Physique ---
 WIDTH, HEIGHT = 900, 500
-FPS = 30
+FPS = 60
 GRAVITY = 0.8
 JUMP_VEL = -15
 PLAYER_SIZE = 40

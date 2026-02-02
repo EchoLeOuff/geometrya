@@ -1,4 +1,5 @@
 # train.py
+import time
 import numpy as np
 import pygame
 from config import *
@@ -12,6 +13,7 @@ from IA.DQN import (
 )
 import matplotlib.pyplot as plt
 
+
 def make_env():
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -21,6 +23,7 @@ def make_env():
     processor = FrameProcessor()
     return screen, clock, engine, processor
 
+
 def reset_env(screen, engine, processor, clock):
     engine.reset()
     screen.fill(BG)
@@ -28,10 +31,13 @@ def reset_env(screen, engine, processor, clock):
     state = processor.process(screen)  # (4, 84, 84)
     return state
 
+
 def step_env(screen, engine, processor, clock, action):
     jump_pressed = (action == 1)
 
+    # Limitation FPS + mesure du temps entre frames
     clock.tick(FPS)
+
     engine.update(jump_pressed, WIDTH)
     render(screen, engine)
     pygame.display.flip()
@@ -45,8 +51,9 @@ def step_env(screen, engine, processor, clock, action):
     state = processor.process(screen)
     return state, reward, done
 
+
 def train_dqn(
-    num_episodes=50,
+    num_episodes=10,
     batch_size=32,
     gamma=0.99,
     lr=1e-3,
@@ -63,10 +70,20 @@ def train_dqn(
     epsilon_min = 0.1
     epsilon_decay = 0.995
 
+    # Pour les courbes
+    episodic_rewards = []
+    episodic_durations = []      # temps (s) par épisode
+    episodic_fps = []            # FPS moyen par épisode
+    episodic_efficiency = []     # reward / seconde
+
     for ep in range(num_episodes):
         state = reset_env(screen, engine, processor, clock)
         done = False
         total_reward = 0.0
+
+        # métriques temporelles par épisode
+        start_time = time.time()
+        frame_count = 0
 
         while not done:
             # Gestion fermeture fenêtre
@@ -87,6 +104,7 @@ def train_dqn(
             store_transition(replay_buffer, state, action, reward, next_state, done)
             state = next_state
             total_reward += reward
+            frame_count += 1
 
             # Apprentissage
             if len(replay_buffer) >= batch_size:
@@ -96,22 +114,69 @@ def train_dqn(
                 grads = backward(params, cache, actions, targets)
                 update_params(params, grads, lr)
 
+        # Fin épisode : métriques
+        duration = time.time() - start_time
+        avg_fps = frame_count / duration if duration > 0 else 0.0
+        efficiency = total_reward / duration if duration > 0 else 0.0
+
+        episodic_rewards.append(total_reward)
+        episodic_durations.append(duration)
+        episodic_fps.append(avg_fps)
+        episodic_efficiency.append(efficiency)
+
         epsilon = max(epsilon_min, epsilon * epsilon_decay)
-        print(f"Episode {ep+1}/{num_episodes} | Reward={total_reward:.1f} | epsilon={epsilon:.3f}")
+
+        print(
+            f"Episode {ep+1}/{num_episodes} | "
+            f"Reward={total_reward:.1f} | "
+            f"epsilon={epsilon:.3f} | "
+            f"frames={frame_count} | "
+            f"time={duration:.2f}s | "
+            f"FPS_moy={avg_fps:.1f} | "
+            f"reward/s={efficiency:.2f}"
+        )
 
     # === SAUVEGARDE DES PARAMS ===
     np.save(save_path, params, allow_pickle=True)
     print(f"Paramètres sauvegardés dans {save_path}")
 
+    # === COURBES ===
+    plt.figure(figsize=(10, 6))
+
+    plt.subplot(2, 2, 1)
     plt.plot(episodic_rewards)
     plt.xlabel("Episode")
     plt.ylabel("Total reward")
-    plt.title("Courbe d'apprentissage - DQN")
+    plt.title("Reward par épisode")
     plt.grid()
-    plt.savefig("rewards_curve.png")
+
+    plt.subplot(2, 2, 2)
+    plt.plot(episodic_durations)
+    plt.xlabel("Episode")
+    plt.ylabel("Durée (s)")
+    plt.title("Durée par épisode")
+    plt.grid()
+
+    plt.subplot(2, 2, 3)
+    plt.plot(episodic_fps)
+    plt.xlabel("Episode")
+    plt.ylabel("FPS moyen")
+    plt.title("FPS moyen par épisode")
+    plt.grid()
+
+    plt.subplot(2, 2, 4)
+    plt.plot(episodic_efficiency)
+    plt.xlabel("Episode")
+    plt.ylabel("Reward / s")
+    plt.title("Efficacité (reward par seconde)")
+    plt.grid()
+
+    plt.tight_layout()
+    plt.savefig("training_metrics.png")
     plt.show()
 
     pygame.quit()
+
 
 if __name__ == "__main__":
     train_dqn()
