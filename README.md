@@ -170,6 +170,11 @@ poetry install --no-root
 ```bash
 eval "$(poetry env activate --shell bash)"  # ou fish: eval (poetry env activate --shell fish)
 ```
+si cela ne fonctionne pas : 
+
+```bash
+$ eval $(poetry env activate)
+```
 
 5. Lancez vos scripts :
 
