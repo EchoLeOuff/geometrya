@@ -173,7 +173,7 @@ eval "$(poetry env activate --shell bash)"  # ou fish: eval (poetry env activate
 si cela ne fonctionne pas : 
 
 ```bash
-$ eval $(poetry env activate)
+eval $(poetry env activate)
 ```
 
 5. Lancez vos scripts :
